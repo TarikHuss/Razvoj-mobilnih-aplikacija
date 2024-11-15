@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="colorView" type="id" />
+    <item name="redSeekBar" type="id" />
+    <item name="greenSeekBar" type="id" />
+    <item name="blueSeekBar" type="id" />
+    <item name="redValueText" type="id" />
+    <item name="greenValueText" type="id" />
+    <item name="blueValueText" type="id" />
+    <item name="hexColorText" type="id" />
+    <item name="seekBarBlue" type="id" />
+    <item name="seekBarGreen" type="id" />
+    <item name="seekBarRed" type="id" />
+</resources>

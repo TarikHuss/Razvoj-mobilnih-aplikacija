@@ -76,7 +76,12 @@ fun averageAgeWithoutGrouping(developers: List<Developer>): Map<String, Double> 
             languageCount[language] = languageCount.getOrDefault(language, 0) + 1
         }
     }
-    return ageSum.toList().map{ (language, sum) -> language to sum.toDouble() / languageCount.getValue(language) }.toMap()
+   val averageAgeMap = mutableMapOf<String, Double>()
+    for ((language, sum) in ageSum) {
+        averageAgeMap[language] = sum.toDouble() / languageCount.getValue(language)
+    }
+
+    return averageAgeMap
 }
 
 /*
