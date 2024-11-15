@@ -114,5 +114,4 @@ val developers = listOf(
 )
 
 printDeveloperData(developers)
-
 }
