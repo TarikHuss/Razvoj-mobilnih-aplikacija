@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar_info" type="id" />
+    <item name="edit_note_title" type="id" />
+    <item name="edit_note_content" type="id" />
+    <item name="fab_save_note" type="id" />
+    <item name="toolbar_icon" type="id" />
+    <item name="toolbar_title" type="id" />
+    <item name="editTitle" type="id" />
+    <item name="editText" type="id" />
+    <item name="saveButton" type="id" />
+    <item name="noteTitle" type="id" />
+    <item name="noteDate" type="id" />
+    <item name="fragmentContainer" type="id" />
+    <item name="infoIcon" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="addNoteButton" type="id" />
+    <item name="deleteIcon" type="id" />
+</resources>
