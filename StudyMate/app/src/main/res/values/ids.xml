@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="welcome_text" type="id" />
+    <item name="description_text" type="id" />
+    <item name="get_started_button" type="id" />
+    <item name="email_input" type="id" />
+    <item name="nav_profile" type="id" />
+    <item name="nav_flashcards" type="id" />
+    <item name="nav_quizzes" type="id" />
+    <item name="nav_settings" type="id" />
+    <item name="taskText" type="id" />
+    <item name="reminderTitleEditText" type="id" />
+    <item name="reminderTimeButton" type="id" />
+    <item name="saveReminderButton" type="id" />
+    <item name="achievementsIcon" type="id" />
+    <item name="questionText" type="id" />
+    <item name="answerText" type="id" />
+    <item name="nav_home" type="id" />
+    <item name="topicInput" type="id" />
+    <item name="generateButton" type="id" />
+    <item name="flashcardsList" type="id" />
+    <item name="flashcard_question" type="id" />
+    <item name="flashcard_answer" type="id" />
+    <item name="deleteFlashcardButton" type="id" />
+    <item name="editQuestion" type="id" />
+    <item name="editAnswer" type="id" />
+    <item name="btnAddFlashcard" type="id" />
+    <item name="recyclerViewFlashcards" type="id" />
+    <item name="textQuestion" type="id" />
+    <item name="textAnswer" type="id" />
+    <item name="btnDelete" type="id" />
+    <item name="btnEdit" type="id" />
+    <item name="reminderTitle" type="id" />
+    <item name="reminderDueDate" type="id" />
+    <item name="shareButton" type="id" />
+</resources>
