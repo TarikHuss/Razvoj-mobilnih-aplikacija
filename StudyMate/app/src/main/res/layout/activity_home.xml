@@ -7,7 +7,6 @@
     android:background="@drawable/home_background"
     tools:context=".HomeActivity">
 
-    <!-- Poruka dobrodošlice -->
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- CardView za statistiku kvizova -->
     <androidx.cardview.widget.CardView
         android:id="@+id/statsCard"
         android:layout_width="match_parent"
@@ -58,7 +56,6 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- RecyclerView za podsjetnike -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/remindersList"
         android:layout_width="0dp"
@@ -69,7 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Dugme za dodavanje podsjetnika -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addReminderButton"
         android:layout_width="wrap_content"
@@ -81,7 +77,6 @@
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="24dp" />
 
-    <!-- Navigacija na dnu ekrana -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"

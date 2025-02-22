@@ -47,7 +47,7 @@ class QuizViewModel : ViewModel() {
     }
 
     fun startNewQuiz(category: String?) {
-        currentCategory = category  // Dodaj ovu liniju
+        currentCategory = category
         _questionNumber.value = 0
         _score.value = 0
         _isQuizFinished.value = false
@@ -55,16 +55,16 @@ class QuizViewModel : ViewModel() {
     }
 
     private fun startTimer() {
-        timer?.cancel() // Prekini prethodni timer ako postoji
+        timer?.cancel()
 
-        timer = object : CountDownTimer(10000, 1000) { // 10 sekundi, tick svake sekunde
+        timer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 _timeRemaining.value = (millisUntilFinished / 1000).toInt()
             }
 
             override fun onFinish() {
-                // Vrijeme je isteklo, tretiraj kao netačan odgovor
-                checkAnswer("")  // Prazan string će se tretirati kao netačan odgovor
+
+                checkAnswer("")
             }
         }.start()
     }
@@ -82,9 +82,8 @@ class QuizViewModel : ViewModel() {
         val context = contextRef?.get() ?: return
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        // Koristi user-specific key za SharedPreferences
         val prefs = context.getSharedPreferences(
-            "quiz_stats_$userId",  // Dodaj userId u ime preferences fajla
+            "quiz_stats_$userId",
             Context.MODE_PRIVATE
         )
         val gson = Gson()
@@ -139,13 +138,13 @@ class QuizViewModel : ViewModel() {
     }
 
     private fun generateQuiz() {
-        if (flashcards.size < 4) return // Potrebno minimalno 4 kartice za kviz
+        if (flashcards.size < 4) return
 
         currentQuestions.clear()
         val selectedFlashcards = flashcards.shuffled().take(10)
 
         selectedFlashcards.forEach { flashcard ->
-            // Generisanje različitih tipova pitanja
+
             when ((0..2).random()) {
                 0 -> generateMultipleChoice(flashcard)
                 1 -> generateTrueFalse(flashcard)
@@ -205,7 +204,7 @@ class QuizViewModel : ViewModel() {
     }
 
     fun checkAnswer(answer: String) {
-        stopTimer()  // Zaustavi timer kada korisnik odgovori
+        stopTimer()
 
         val currentQ = currentQuestion.value ?: return
 
@@ -232,7 +231,7 @@ class QuizViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        stopTimer()  // Zaustavi timer kada se ViewModel uništi
+        stopTimer()
     }
 
     fun getFinalScore(): Int {

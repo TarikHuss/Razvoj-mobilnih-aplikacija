@@ -24,14 +24,14 @@ class ShareCategoryDialog : DialogFragment() {
     private lateinit var usersAdapter: UsersAdapter
     private lateinit var category: String
     private lateinit var flashcards: List<Flashcard>
-    private lateinit var searchButton: MaterialButton // Dodajemo dugme za pretragu
+    private lateinit var searchButton: MaterialButton
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = layoutInflater.inflate(R.layout.dialog_share_category, null)
 
         searchInput = view.findViewById(R.id.searchInput)
         usersList = view.findViewById(R.id.usersList)
-        searchButton = view.findViewById(R.id.searchButton) // Dodajemo referencu na dugme
+        searchButton = view.findViewById(R.id.searchButton)
 
         usersAdapter = UsersAdapter { user ->
             shareWithUser(user.id)
@@ -40,7 +40,6 @@ class ShareCategoryDialog : DialogFragment() {
         usersList.layoutManager = LinearLayoutManager(context)
         usersList.adapter = usersAdapter
 
-        // Dodajemo onClick listener za dugme pretrage
         searchButton.setOnClickListener {
             val email = searchInput.text.toString().trim()
             if (email.isNotEmpty()) {
@@ -87,25 +86,22 @@ class ShareCategoryDialog : DialogFragment() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
 
-        // Prvo dohvati sve flashcards iz odabrane kategorije
         db.collection("users")
             .document(currentUser?.uid ?: "")
             .collection("flashcards")
-            .whereEqualTo("category", category)  // category je kategorija koju dijelimo
+            .whereEqualTo("category", category)
             .get()
             .addOnSuccessListener { documents ->
-                // Kreiraj batch za grupno dodavanje kartica
+
                 val batch = db.batch()
 
                 documents.forEach { document ->
                     val flashcard = document.toObject(Flashcard::class.java)
-                    // Kreiraj novi dokument u kolekciji primatelja
                     val newDocRef = db.collection("users")
                         .document(userId)
                         .collection("flashcards")
                         .document()
 
-                    // Kreiraj novu karticu sa novim ID-em ali istim sadržajem
                     val sharedFlashcard = Flashcard(
                         id = newDocRef.id,
                         question = flashcard.question,
@@ -113,11 +109,9 @@ class ShareCategoryDialog : DialogFragment() {
                         category = flashcard.category
                     )
 
-                    // Dodaj operaciju u batch
                     batch.set(newDocRef, sharedFlashcard)
                 }
 
-                // Izvrši sve operacije odjednom
                 batch.commit()
                     .addOnSuccessListener {
                         Toast.makeText(context, "Category shared successfully!", Toast.LENGTH_SHORT).show()

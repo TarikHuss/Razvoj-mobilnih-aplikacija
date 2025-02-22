@@ -66,13 +66,10 @@ class HomeActivity : AppCompatActivity() {
         categoryStatsRecyclerView = findViewById(R.id.categoryStatsRecyclerView)
         categoryStatsRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Postavi personalizovanu poruku dobrodošlice
-
         welcomeMessage.text = "Welcome!"
 
         loadQuizStatistics()
 
-        // Postavi adapter za podsjetnike
         reminderAdapter = ReminderAdapter(reminders) { reminder ->
             removeReminder(reminder)
         }
@@ -80,10 +77,8 @@ class HomeActivity : AppCompatActivity() {
         remindersList.adapter = reminderAdapter
         remindersList.itemAnimator = DefaultItemAnimator() // Animacija za dodavanje i brisanje
 
-        // Omogućavanje swipe-to-delete
         setupSwipeToDelete()
 
-        // Dugme za dodavanje podsjetnika
         addReminderButton.setOnClickListener {
             showAddReminderDialog()
         }
@@ -231,7 +226,7 @@ class HomeActivity : AppCompatActivity() {
             title,
             dueDate,
             onSuccess = {
-                setupReminders()  // Osvježi listu nakon dodavanja
+                setupReminders()
                 Toast.makeText(this, "Reminder added", Toast.LENGTH_SHORT).show()
             },
             onFailure = { exception ->

@@ -6,5 +6,5 @@ data class Reminder(
     val dueDate: String = "",
     val userId: String = ""
 ) {
-    constructor() : this("", "", "", "")  // Potrebno za Firestore
+    constructor() : this("", "", "", "")
 }

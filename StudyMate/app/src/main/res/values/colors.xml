@@ -6,7 +6,6 @@
     <color name="dark_gray">#616161</color>
     <color name="light_background">#FCEFF9</color>
     <color name="purple_500">#9C27B0</color>
-    <color name="red">#D32F2F</color> <!-- Tamnija crvena -->
-
+    <color name="red">#D32F2F</color>
 
 </resources>

@@ -9,19 +9,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore // Dodaj import
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore // Dodaj FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance() // Inicijaliziraj Firestore
+        db = FirebaseFirestore.getInstance()
 
         val fullNameEditText = findViewById<EditText>(R.id.fullNameEditText)
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
@@ -45,11 +45,10 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Kreiranje korisnika u Firebase Authentication
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        // Sačuvaj podatke korisnika u Firestore
+
                         val user = auth.currentUser
                         val userMap = hashMapOf(
                             "id" to user?.uid,
@@ -62,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
                                 .document(uid)
                                 .set(userMap)
                                 .addOnSuccessListener {
-                                    // Sačuvaj ime u SharedPreferences
+
                                     val sharedPrefs = getSharedPreferences("StudyMatePrefs", Context.MODE_PRIVATE)
                                     sharedPrefs.edit().putString("user_name", fullName).apply()
 

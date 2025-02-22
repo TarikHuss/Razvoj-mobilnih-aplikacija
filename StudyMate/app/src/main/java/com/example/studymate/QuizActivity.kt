@@ -49,7 +49,7 @@ class QuizActivity : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_quizzes -> true // Već smo ovdje
+                R.id.nav_quizzes -> true
                 else -> false
             }
         }
@@ -95,12 +95,11 @@ class QuizActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
         }
 
-        dialog = AlertDialog.Builder(this)  // Koristi klasnu varijablu dialog umjesto lokalne
+        dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
             .create()
 
-        // Provjeri da li postoji dugme prije nego što postaviš listener
         dialogView.findViewById<MaterialButton>(R.id.allCategoriesButton)?.setOnClickListener {
             viewModel.startNewQuiz(null)
             dialog.dismiss()
@@ -134,7 +133,6 @@ class QuizActivity : AppCompatActivity() {
         viewModel.timeRemaining.observe(this) { timeLeft ->
             timerText.text = "Time: ${timeLeft}s"
 
-            // Opciono: promijeni boju kada je malo vremena ostalo
             if (timeLeft <= 3) {
                 timerText.setTextColor(getColor(R.color.red))
             } else {
@@ -154,18 +152,16 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showQuizCompleted() {
-        // Sakrij sve containere za pitanja
+
         multipleChoiceContainer.visibility = View.GONE
         trueFalseContainer.visibility = View.GONE
         writtenAnswerContainer.visibility = View.GONE
 
-        // Prikaži rezultat
         questionTextView.text = "Quiz Completed!"
         val finalScore = viewModel.getFinalScore()
-        val currentCategory = viewModel.getCurrentCategory() // Dobijamo trenutnu kategoriju
+        val currentCategory = viewModel.getCurrentCategory()
 
-        // Sačuvaj rezultat kviza
-        viewModel.saveQuizResult(currentCategory, finalScore * 10) // Množimo sa 10 da dobijemo postotak (0-100)
+        viewModel.saveQuizResult(currentCategory, finalScore * 10)
 
         val message = when {
             finalScore == 10 -> "Perfect Score! 🎉"
@@ -182,7 +178,6 @@ class QuizActivity : AppCompatActivity() {
 
         scoreText.text = "Final Score: $finalScore/10"
 
-        // Dodaj dugme za povratak
         val returnButton = MaterialButton(this).apply {
             text = "Return to Home"
             setOnClickListener {
@@ -193,13 +188,11 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
-        // Pronađi container gdje ćemo staviti dugme
         val container = findViewById<LinearLayout>(R.id.multipleChoiceContainer)
         container.visibility = View.VISIBLE
         container.removeAllViews()
         container.addView(returnButton)
 
-        // Možemo dodati i Toast za dodatnu potvrdu
         Toast.makeText(
             this,
             "Quiz completed! You scored $finalScore out of 10",
@@ -216,12 +209,10 @@ class QuizActivity : AppCompatActivity() {
     private fun showQuestion(question: QuizQuestion) {
         questionTextView.text = question.question
 
-        // Prvo sakrijemo sve kontejnere
         multipleChoiceContainer.visibility = View.GONE
         trueFalseContainer.visibility = View.GONE
         writtenAnswerContainer.visibility = View.GONE
 
-        // Zatim prikažemo i postavimo odgovarajući kontejner prema tipu pitanja
         when (question.questionType) {
             QuestionType.MULTIPLE_CHOICE -> {
                 multipleChoiceContainer.visibility = View.VISIBLE
@@ -234,7 +225,7 @@ class QuizActivity : AppCompatActivity() {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         ).apply {
-                            setMargins(0, 0, 0, 16) // Dodajemo malo razmaka između dugmadi
+                            setMargins(0, 0, 0, 16)
                         }
                         setOnClickListener {
                             viewModel.checkAnswer(option)
@@ -311,6 +302,5 @@ class QuizActivity : AppCompatActivity() {
         super.onResume()
         bottomNavigation.selectedItemId = R.id.nav_quizzes
     }
-
 
 }
