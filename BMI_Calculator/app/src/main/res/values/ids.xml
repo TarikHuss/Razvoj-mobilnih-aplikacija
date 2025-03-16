@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="etAge" type="id" />
+    <item name="rgGender" type="id" />
+    <item name="rbMale" type="id" />
+    <item name="rbFemale" type="id" />
+    <item name="etHeight" type="id" />
+    <item name="etWeight" type="id" />
+    <item name="btnCalculate" type="id" />
+    <item name="btnReset" type="id" />
+    <item name="tvResult" type="id" />
+</resources>
